@@ -19,7 +19,7 @@ class JpaRepositoryTest {
 
 
     private final ArticleRepository articleRepository;
-    private final ArticleCommentRepository articleCommentRepository;
+    private final ArticleCommentRepository articleCommentRepository
     public JpaRepositoryTest(
             @Autowired ArticleRepository articleRepository,
             @Autowired ArticleCommentRepository articleCommentRepository
