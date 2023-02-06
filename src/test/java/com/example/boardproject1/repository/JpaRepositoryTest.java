@@ -38,7 +38,7 @@ class JpaRepositoryTest {
     }
 
     @Test
-    void given_when_then(){
+    void givenTestData_whenSelecting_then(){
 
     }
 }
