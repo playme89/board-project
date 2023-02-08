@@ -13,11 +13,10 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
+@AllArgsConstructor
 @ToString
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "hashtag"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
@@ -28,16 +27,20 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @Setter @Column(nullable = false)
+
+    @JoinColumn(name = "userId")
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;
+
+    @Column(nullable = false)
     private String title;
-    @Setter @Column(nullable = false)
+    @Column(nullable = false,length = 100)
     private String content;
 
-    @Setter
     private String hashtag;
 
     @ToString.Exclude
-    @OrderBy("id")
+    @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "article",cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
